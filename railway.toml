@@ -1,0 +1,16 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Same image for every service; the service's JOB variable decides what runs
+# (refresh by default, or filter). See start.sh.
+startCommand = "sh start.sh"
+# A clean finish (exit 0) stops the service; a crash restarts it and the job resumes.
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+# Daily schedule (UTC), once the first runs are done and checked. The filter
+# service should run after the refresh service; Railway applies this file to
+# every service built from the repo, so set each service's own schedule in its
+# Settings → Cron Schedule instead of here if they need different times.
+# cronSchedule = "0 7 * * *"
