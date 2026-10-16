@@ -10,8 +10,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY refresh.py transforms.py gap_models.py filter_job.py rules.py embeddings.py start.sh ./
+COPY refresh.py transforms.py gap_models.py filter_job.py rules.py embeddings.py enrich_job.py ai_rules.py start.sh ./
 COPY tracker_db ./tracker_db
 
-# JOB picks the service: refresh (default) or filter. See start.sh.
+# JOB picks the service: refresh (default), filter or enrich. See start.sh.
 CMD ["sh", "start.sh"]
